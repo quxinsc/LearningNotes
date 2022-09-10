@@ -1,4 +1,4 @@
-
+aaaaaa
 #include <iostream>
 double cube(double a);
 double refcube(const double &ra);
