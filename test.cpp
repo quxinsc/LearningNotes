@@ -1,4 +1,4 @@
-// cubes.cpp -- regular and reference arguments
+// cu
 #include <iostream>
 double cube(double a);
 double refcube(const double &ra);
