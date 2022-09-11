@@ -13,4 +13,4 @@ int main ()
     cout<<s4<<endl;
     cin.get();
     return 0;
-} 
+}  
