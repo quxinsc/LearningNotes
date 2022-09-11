@@ -1,17 +1,19 @@
-#include<sstream>
-#include<iostream>
-using namespace std;
-string fun(int a,int b);
+//栈--局部变量，函数参数，返回地址..【函数每一次运行都有一个独立的栈】【通过变量使用】
+//堆--【内存段】使用nwe分配，delete释放【全局只有一个堆】【通过指针使用】
+//自由存储区
+//全局/静态存储区
+//常量存储
+
+///////重点！！！！
+void fun()
+{
+    int *p=new int;//分配一个内存单元
+    *p=100;
+    delete p;//释放
+}
+
 int main()
 {
-
-    cout<<fun(2,4);
-    cin.get();
+    fun();
     return 0;
-}
-string fun(int a,int b)
-{
-    stringstream ss;
-    ss<<a<<"+"<<b<<"="<<a+b;
-    return ss.str();
 }
