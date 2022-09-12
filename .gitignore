@@ -1,3 +1,13 @@
+/*
+ * @Author: quxinsc 2224721143quxin@gmail.com
+ * @Date: 2022-09-12 00:36:49
+ * @LastEditors: quxinsc 2224721143quxin@gmail.com
+ * @LastEditTime: 2022-09-13 00:29:20
+ * @FilePath: \Code\.gitignore
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
+ */
 *.o
 a.out
 *.sh
