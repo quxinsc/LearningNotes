@@ -50,5 +50,5 @@ $$
 **加粗**
 `printf();`
 <u>underline</u>
+> 行内数学公式$\theta=x^2$
 
-:smile:
