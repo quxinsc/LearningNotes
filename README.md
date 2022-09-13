@@ -1,6 +1,6 @@
 
 # 🚀面向对象的三大特征
-![logo](https://ooo.0o0.ooo/2017/09/16/59bd3aa5659f3.png)
+![图层 2.png](https://s2.loli.net/2022/09/14/c5Eam6qMGuV2S1y.png)
 
 >三大特征具有承上启下的关系，而且适用于所有面向对象的编程语言
 ---
