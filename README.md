@@ -75,13 +75,23 @@ private:
 
 ### 1.4this指针
 - this 是C++中的一个关键字，也是一个指针常量，它指向当前对象，通过它可以访问当前对象的所有成员
-- this实际上是成员函数的一个隐式的形参，在调用成员函数时将对象的地址作为实参传递给 this
+- this实际上是成员函数的一个隐式的形参，在调用成员函数时将`对象的地址`作为实参传递给 this
 
 >this 只能在成员函数内部使用，用在其他地方没有意义，也是非法的。
 this 是指针常量，它的值是不能被修改的，一切企图修改该指针的操作，如赋值、递增、递减等都是不允许的。
 只有当对象被创建后 this 才有意义，因此不能在 static 成员函数中使用（后续会讲到 static 成员）。
-
-
+```cpp
+##定义一个成员函数，它查看两个Stock对象 ，并返回股价较高的那个对象的引用
+const Stock&Stock::topval(const Stock & s) const//括号中的const表明，该函数不会修改被显式地访问的对象
+{                                               //括号后的const表明，该函数不会修改被隐式地访问的对象
+    if(s.total_val>total_val)                   //返回类型为const引用
+        return s;//topval( )中的 total_val只不过是this->total_val的简写
+    else
+        return *this;//返回的并不是this，因为this是对象的地址，而是对象本身，即*this
+}
+```
+### 1.5对象数组
+`Stock mystuff[4]l`创建四个对象
 ---
 
 ## 2.继承

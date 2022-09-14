@@ -1,12 +1,10 @@
-// stock1.cpp � Stock class implementation with constructors, destructor added
+// stock20.cpp -- augmented version
 #include <iostream>
-#include "stock10.h"
-
-// constructors (verbose versions)
+#include "stock20.h"
+using namespace std;
+// constructors
 Stock::Stock()        // default constructor
 {
-    std::cout << "Default constructor called\n";
-    company = "no name";
     shares = 0;
     share_val = 0.0;
     total_val = 0.0;
@@ -14,9 +12,7 @@ Stock::Stock()        // default constructor
 
 Stock::Stock(const std::string & co, long n, double pr)
 {
-    std::cout << "Constructor using " << co << " called\n";
     company = co;
-
     if (n < 0)
     {
         std::cout << "Number of shares can't be negative; "
@@ -28,10 +24,10 @@ Stock::Stock(const std::string & co, long n, double pr)
     share_val = pr;
     set_tot();
 }
+
 // class destructor
-Stock::~Stock()        // verbose class destructor
+Stock::~Stock()        // quiet class destructor
 {
-    std::cout << "Bye, " << company << "!\n";
 }
 
 // other methods
@@ -77,7 +73,7 @@ void Stock::update(double price)
     set_tot();
 }
 
-void Stock::show()
+void Stock::show() const
 {
     using std::cout;
     using std::ios_base;
@@ -86,14 +82,22 @@ void Stock::show()
         cout.setf(ios_base::fixed, ios_base::floatfield); 
     std::streamsize prec = cout.precision(3);
 
-    cout << "Company: " << company
-        << "  Shares: " << shares << '\n';
-    cout << "  Share Price: $" << share_val;
+    cout << "公司: " << company
+        << "  数量: " << shares << '\n';
+    cout << "  股价: $" << share_val;
     // set format to #.##
     cout.precision(2);
-    cout << "  Total Worth: $" << total_val << '\n';
+    cout << "  股票总值: $" << total_val << '\n';
 
     // restore original format
     cout.setf(orig, ios_base::floatfield);
     cout.precision(prec);
+}
+
+const Stock & Stock::topval(const Stock & s) const
+{
+    if (s.total_val > total_val)
+        return s;
+    else
+        return *this; 
 }
