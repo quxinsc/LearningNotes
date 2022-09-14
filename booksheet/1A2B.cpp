@@ -2,11 +2,13 @@
  * @Author: quxinsc 2224721143quxin@gmail.com
  * @Date: 2022-09-13 15:57:27
  * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-09-14 00:10:06
+ * @LastEditTime: 2022-09-14 12:30:36
  * @FilePath: \Code\booksheet\1A2B.cpp
- * @Description: 1A2B第一次上课项目
+ * @Description: 
+ * 
  * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
  */
+
 #include <iostream>
 #include <ctime>
 #include <string>

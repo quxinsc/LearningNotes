@@ -2,12 +2,12 @@
  * @Author: quxinsc 2224721143quxin@gmail.com
  * @Date: 2022-09-13 13:22:25
  * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-09-13 14:48:13
+ * @LastEditTime: 2022-09-14 18:23:00
  * @FilePath: \Code\header\stock00.h
  * @Description: 
- * 
  * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
  */
+
 // stock00.h -- Stock class interface
 // version 00
 #ifndef STOCK00_H_

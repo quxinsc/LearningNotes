@@ -2,7 +2,7 @@
  * @Author: quxinsc 2224721143quxin@gmail.com
  * @Date: 2022-09-13 13:22:25
  * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-09-13 15:31:50
+ * @LastEditTime: 2022-09-14 12:29:38
  * @FilePath: \Code\class\stock01.cpp
  * @Description: 
  * 
@@ -11,6 +11,7 @@
 // stock01.cpp -- revised show() method
 #include <iostream>
 #include "stock00.h"
+
 
 void Stock::acquire(const std::string & co, long n, double pr)
 {
@@ -73,9 +74,12 @@ void Stock::show()
 {
     using std::cout;
     using std::ios_base;
+    ios_base::fmtflags orig;
+    //setf( )返回调用它之前有效的所有格式化设置
+    //ios_base::fmtflags是存储这种信息所需的数据类型名称
     // set format to #.###
-    ios_base::fmtflags orig = cout.setf(ios_base::fixed); 
-    int prec = cout.precision(3);
+    orig = cout.setf(ios_base::fixed); //将对象置于使用定点表示法的模式---orig储存之前的模式
+    int prec = cout.precision(3);//指定显示多少位小数---prec储存之前的精确值
 
     cout << "Company: " << company
         << "  Shares: " << shares << '\n';
@@ -85,6 +89,6 @@ void Stock::show()
     cout << "  Total Worth: $" << total_val << '\n';
 
     // restore original format
-    cout.setf(orig, ios_base::floatfield);
+    cout.setf(orig, ios_base::scientific);
     cout.precision(prec);
 }
