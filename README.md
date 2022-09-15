@@ -82,16 +82,35 @@ this 是指针常量，它的值是不能被修改的，一切企图修改该指
 只有当对象被创建后 this 才有意义，因此不能在 static 成员函数中使用（后续会讲到 static 成员）。
 ```cpp
 ##定义一个成员函数，它查看两个Stock对象 ，并返回股价较高的那个对象的引用
-const Stock&Stock::topval(const Stock & s) const//括号中的const表明，该函数不会修改被显式地访问的对象
-{                                               //括号后的const表明，该函数不会修改被隐式地访问的对象
+//声明一个参数类型为【常量引用】的函数，返回类型为【常量引用】，结尾const防止【被隐式调用的对象】被修改
+const Stock & Stock::topval(const Stock & s) const//括号中的const表明，该函数不会修改被显式地访问的对象--s
+{                                               //括号后的const表明，该函数不会修改被隐式地访问的对象--total_val
     if(s.total_val>total_val)                   //返回类型为const引用
         return s;//topval( )中的 total_val只不过是this->total_val的简写
     else
         return *this;//返回的并不是this，因为this是对象的地址，而是对象本身，即*this
 }
+//常量指针，指向的值不能变<==>const Stock * top   
+    Stock const * top = &stocks[0];
+    for (st = 1; st < STKS; st++)
+```
+```cpp
+       //->指针操作符的优先级非常高，于是&p->a就是&(p->a)     
+        top =&top->topval(stocks[st]);
+        top = &((*top).topval(stocks[st]));//top->topval(stocks[st])表示调用对象top的成员函数topval(..)，返回一个最大的对象，top->等价于(*top).因为.优先级比*高，所以加括号
 ```
 ### 1.5对象数组
-`Stock mystuff[4]l`创建四个对象
+`Stock mystuff[4]`创建四个对象，使用默认构造函数初始化
+>创建一个对象数组，使用自定义构造函数初始化
+```cpp
+    Stock stocks[STKS] = {
+        Stock("NanoSmart", 12, 20.0),
+        Stock("Boffo Objects", 200, 2.0),
+        Stock("Monolithic Obelisks", 130, 3.25),
+        Stock("Fleep Enterprises", 60, 6.5)
+        };
+```
+
 ---
 
 ## 2.继承
