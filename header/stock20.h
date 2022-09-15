@@ -10,7 +10,7 @@ private:
     int shares;
     double share_val;
     double total_val;
-    void set_tot() { total_val = shares * share_val; }//内联函数
+    void set_tot(){ total_val = shares * share_val; }//内联函数
 public:
     Stock();        // default constructor
     Stock(const std::string & co, long n = 0, double pr = 0.0);
@@ -22,5 +22,6 @@ public:
     void show()const;
     const Stock & topval(const Stock & s) const;//声明一个参数类型为【常量引用】的函数，返回类型为【常量引用】，结尾const防止【被隐式调用的对象】被修改
 };
+
 
 #endif
