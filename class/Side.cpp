@@ -2,7 +2,7 @@
  * @Author: quxinsc 2224721143quxin@gmail.com
  * @Date: 2022-09-16 02:35:35
  * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-09-16 02:43:35
+ * @LastEditTime: 2022-09-16 03:10:19
  * @FilePath: \Code\class\Side.cpp
  * @Description: 
  * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
@@ -13,7 +13,7 @@
 #include "Side.h"
 Side::Side(float a,float b,float c)
 {
-    if(a+b>c||a+c>b)
+    if((a+b>c)||(a+c>b))
     {
     _a=a;
     _b=b;
@@ -25,12 +25,12 @@ Side::Side(float a,float b,float c)
     _b=0;
     _c=0;
     }
+    C();
     Area();
 }
-
 Side::~Side()
 {
-
+    
 }
 float Side::Area()
 {   
