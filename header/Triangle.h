@@ -2,7 +2,7 @@
  * @Author: quxinsc 2224721143quxin@gmail.com
  * @Date: 2022-09-16 01:55:06
  * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-09-16 16:08:11
+ * @LastEditTime: 2022-09-16 16:30:17
  * @FilePath: \Code\header\Triangle.h
  * @Description: 
  * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
@@ -28,11 +28,24 @@
 
 #ifndef SIDE_H_
 #define SIDE_H_
+
+class Point
+{
+    public:
+        Point(float x=0,float y=0);//构造函数
+        ~Point();//析构函数 
+       // void Set();
+    private:
+        float x;
+        float y;
+};
+
+
 class Triangle
 {
     public:
         Triangle(float a=0,float b=0,float c=0);
-        Triangle(Point x,Point p2,Point p3);
+        Triangle(Point p1,Point p2,Point p3);
         void Show() const;//const成员函数,保证函数不会修改调用对象
         void SetX();
         void SetY();
@@ -48,14 +61,4 @@ class Triangle
         void C(){_p=(_a+_b+_c)/2;}
 };
 
-class Point
-{
-    public:
-        Point(float x=0,float y=0);//构造函数
-        ~Point();//析构函数 
-       // void Set();
-    private:
-        float x;
-        float y;
-};
 #endif
