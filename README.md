@@ -110,8 +110,125 @@ const Stock & Stock::topval(const Stock & s) const//括号中的const表明，�
         Stock("Fleep Enterprises", 60, 6.5)
         };
 ```
-
+### 1.5静态(static)成员变量/函数
+- 一个函数的每一次运行都会有一个独立的栈，里面存放了该函数的局部变量。函数运行结束后，栈会被自动释放；而再次调用该函数，会重新分配栈。所以函数的局部变量，在函数的每一次运行都是不同的内存单元。
 ---
+- 为了能够让局部变量保留上一次运行的结果,`静态变量存储在静态区域中，不会因为函数结束而被释放`，所以静态局部变量会保存上一次运行的结果。
+```cpp
+void fun()
+{
+    int a=0;
+    static int s;//static默认初始化为0
+    cout<<++a<<endl;
+    cout<<++s<<endl;
+}
+int main()
+{
+    fun();
+    fun();
+}
+```
+>输出1 1 1 2
+- 静态局部变量可以被一个函数的每次调用所“共享”
+- 一个类的静态成员变量可以被该类的所有对象所“共享”
+```cpp
+class Student{
+     static int _sum; 
+}    //声明表示学生总数的静态成员变量 
+.....
+int Student::_sum = 0;     //类外初始化静态成员变量_sum 
+int main()
+{
+cout<<"人数是:"<<stu1._sum<<endl;   //通过对象访问静态成员变量 
+cout<<"人数是"<<Student::_sum<<endl; //通过类访问静态成员变量 
+}
+```
+- static修饰的静态成员变量只能在类内部定义，在类外部初始化
+---
+>static成员函数的参数中没有`默认的this指针`,静态成员函数无法调用非static成员
+```cpp
+class Demo{
+	void fun1(){}	// 非静态成员函数
+	static void fun2(){
+		fun1();		// 错误，静态成员函数访问非静态成员
+		x = 100;	// 错误，同上
+	}
+	int x;
+};
+```
+```cpp
+class Point 
+{ 
+public: 
+     const static float getLen(); 
+private: 
+     const static float area; 
+}; 
+const float area=3600;
+
+使用static const修饰符组合修饰类成员，既实现了数据共享又达到了数据不被改变的目的。此时，修饰成员函数与修饰普通函数格式一样，修饰成员变量必须在类的内部进行初始化
+```
+**应用场景1：由于可以通过类名直接调用静态成员，所以`把全局函数转换成某个类的静态成员函数`**
+### 1.6关键字修饰类的成员
+- const int a;
+- static int a;
+- int & a;
+>都是int类型
+>
+>都需要初始化，static默认初始化为0
+>
+>默认的析构函数只能完成栈内存对象的资源清理，无法完成堆内存对象的资源清理
+- 在一个`函数中定义了一个对象`，当函数调用结束时，对象应当被释放，对象释放之前编译器会调用析构函数释放资源
+- 对于`static修饰的对象和全局对象`，只有在程序结束时编译器才会调用析构函数
+- 对于`new`运算符创建的对象，在调用delete释放时，编译器会调用析构函数释放资源
+---
+### 1.7友元
+1. 友元函数不是成员函数
+2. 声明可以写在类中任意位置
+- ①友元声明位置由程序设计者决定，且不受类中public、private、protected权限控制符的影响。
+- ②友元`关系是单向的`，即类A是类B的友元，但B不是A的友元。
+- ③友元关系`不具有传递性`，即类C是类D的友元，类E是类C的友元，但类E不是类D的友元。
+- ④友元关系`不能被继承`。
+#### 1.普通函数作为友元函数
+```cpp
+ #include<iostream> 
+ using namespace std; 
+ class Circle 
+ { 
+ friend void getArea(Circle &circle);    //声明普通函数getArea()为友元函数 
+ private: 
+     float _radius; 
+     const float PI=3.14; 
+ public: 
+     Circle(float radius); 
+     ~Circle(); 
+ }; 
+ ```
+#### 2.其他类的成员函数作为友元函数
+```cpp
+class B;      //声明类B 
+class A 
+{ 
+public： 
+ int func();     //声明成员函数func() 
+}; 
+class B 
+{ 
+ friend int A::func();   //声明类A的成员函数func()为友元函数 
+} 
+```
+#### 3.友元类
+>声明友元类之后，友元类中的所有成员函数都是该类的友元函数，能够访问该类的所有成员
+```cpp
+class B；         //类B前向声明 
+class A 
+{ 
+}; 
+class B 
+{ 
+ friend class A；       //声明类A是类B的友元类 
+} 
+```
 
 ## 2.继承
 
