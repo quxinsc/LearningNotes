@@ -1,7 +1,7 @@
 
 # 🚀面向对象的三大特征
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=quxinsc&show_icons=true&theme=tokyonight&hide_border=true&custom_title=TinyStar's-GitHub-Stats)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=quxinsc&show_icons=true&theme=tokyonight&hide_border=true&custom_title=TinyStar's-GitHub-Stats)
 
 ![图层 2.png](https://s2.loli.net/2022/09/14/c5Eam6qMGuV2S1y.png)
 >三大特征具有承上启下的关系，而且适用于所有面向对象的编程语言
