@@ -37,7 +37,7 @@ President::President()
   
 }
 ================================主文件
-#include <iosream> 
+#include <iostream> 
 #include "President.h"
 using namespace std;
 void fun()
