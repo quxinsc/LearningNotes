@@ -7,17 +7,17 @@ class President
 public:
   static President* GetInstance();//静态成员函数
   void SetName(const char*p);
-  char*GetName();
+  const char*GetName();
 private:
   President();//构造函数私有化，无法从外部创建对象
   static President* instance;//唯一实例指针
-  char* name;
+  const char* name;//用const char*代替string,效率更高
 };
 
 #endif
 ====================================实现文件
 #include "President.h" 
-President *President::instance==nullptr;
+President *President::instance=nullptr;
 President *President::GetInstance()
 {
   if(instance==nullptr)
@@ -28,7 +28,7 @@ void President::SetName(const char*p)
 {
   name=p;
 }
-char* President::GetName()
+const char* President::GetName()
 {
   return name;
 }
