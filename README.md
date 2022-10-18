@@ -89,7 +89,7 @@ const Stock & Stock::topval(const Stock & s) const//括号中的const表明，�
     else
         return *this;//返回的并不是this，因为this是对象的地址，而是对象本身，即*this
 }
-//常量指针，指向的值不能变<==>const Stock * top   
+//常量指针，指向地址的值不能变<==>const Stock * top   
     Stock const * top = &stocks[0];
     for (st = 1; st < STKS; st++)
 ```
