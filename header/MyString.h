@@ -4,6 +4,7 @@
 using namespace std;
 class MyString
 {
+    friend istream& operator>>(istream& i, MyString& other);
     friend ostream& operator<<(ostream& o, const MyString& other);
 public:
     MyString(const char* str="");//转换构造函数,默认值为""空字符串，而非nullptr

@@ -6,6 +6,7 @@
  */
 MyString::~MyString()
 {
+
     delete[] _s;
 }
 /**
@@ -32,6 +33,13 @@ ostream& operator<<(ostream& o, const MyString& other)
 {
     o << "\"" << other._s << "\"";//前面加转义字符'\'，输出双引号
     return o;
+}
+istream& operator>>(istream& i, MyString& other)
+{   
+    delete []other._s;
+    other._s=new char[20];
+    i>>other._s;
+    return i;
 }
 MyString MyString::operator++(int)
 {
@@ -106,7 +114,7 @@ MyString& MyString::operator-=(string other)
             num++;
         }
     }
-    strcpy(_s,p.c_str());//将string类型转化为char *
+    strcpy(_s,p.c_str());//将string类型转化为const char *
     return *this;
 }
 MyString& MyString::operator=(const MyString& other)
