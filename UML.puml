@@ -1,3 +1,0 @@
-@startuml
-Student"学生" <|-- "低年级"Undergraduate:继承
-@enduml
