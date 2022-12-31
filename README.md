@@ -253,16 +253,112 @@ class Fish:public Animal{};//派生类
 ### 虚函数实现机制
 > 虚函数就是通过动态绑定实现多态的，当编译器在编译过程中遇到virtual关键字时，它不会对函数调用进行绑定，而是为包含虚函数的类****建立一张虚函数表Vtable**。在虚函数表中，编译器按照虚函数的声明顺序依次保存虚函数地址。同时，编译器会在类中添加一个隐藏的****虚函数指针VPTR**，指向虚函数表。在创建对象时，将虚函数指针VPTR放置在对象的起始位置，为其分配空间，并调用构造函数将其初始化为虚函数表地址。需要注意的是，****虚函数表不占用对象空间**
 ---
-## STL
+## **S T L**
+>六大组件: 容器、算法、迭代器、仿函数、适配器（配接器）、空间配置器
 ### 序列容器
 ```cpp
 #include<vector>//容器与动态数组相同，在插入或删除元素时能够自动调整自身大小
-#include<deque> 
-#include<list>  
-#include<array>  
-#include<forward_list>
+#include<deque> //双端队列
+#include<list>//双向链表 
+#include<array> //大小固定的数组
+#include<forward_list>//单向链表
 ```
-<p align="center"><a><u>-----GIT思维导图------</u></a></p>
+### 迭代器iterator
+>提供一种方法，使之能够依序寻访某个容器所含的各个元素，而又无需暴露该容器的内部表示方式
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+  vector<int> v = {1, 3, 2, 4, 5};
 
+  // Create an iterator that points to the first element in the vector
+  vector<int>::iterator iter = v.begin();
+  for(int i=0;i!=v.size();++i)
+  cout<<v[i]<<" ";
 
-![iamge](https://s1.328888.xyz/2022/09/14/cLCdE.jpg)
+  cout<<endl;;
+  sort(v.begin(),v.end());//快速排序
+
+  for(int i=0;i!=v.size();++i)
+  cout<<v[i]<<" ";
+  
+  cin.get();
+  return 0;
+}
+```
+## 模板
+### 函数模板
+```cpp
+ template <typename T1[,typename T2,]...>//返回值类型，函数名
+ //class可以作为模板参数的关键字，struct不能
+```
+函数模板实例化
+```cpp
+template <typename T>
+T Add(T a,T b){return a+b;}
+int main()
+{
+    cout<<Add<int>(2,4)<<endl;
+    cout<<Add<double>(1.2,3.4)<<endl;
+    cout<<Add(1.2f,3.4f)<<endl;//隐式实例化
+  //  cout<<Add('A',32)<<endl;//报错，存在二义性
+    cout<<Add<char>('A',32)<<endl;
+    cin.get();
+}
+```
+### 类模板
+```cpp
+
+template<typename T>class Array;
+template<typename T> ostream&operator<<(ostream&o,const Array<T>& other);
+
+template<typename T>
+class Array
+{//在类模板的内部，声明模板函数为友元
+    friend ostream&operator<<<>(ostream&o,const Array<T>& other);
+public:
+    Array(T a[],int size);
+    ~Array();
+private:
+    T* _ptr;
+    int _size;//数组大小
+};
+
+template<typename T>
+ Array<T>::Array(T a[],int size):_size(size)
+ {
+ _ptr=new T[_size];
+ for(int i=0;i<_size;++i)
+ _ptr[i]=a[i];
+ }
+
+template<typename T>
+Array<T>::~Array()
+{
+delete[] _ptr;
+}
+
+template<typename T>
+ostream&operator<<(ostream&o,const Array<T>& other)
+{
+    for(int i=0;i<other._size;++i)
+    o<<other._ptr[i]<<" ";
+    return o;
+}
+
+int main()
+{
+    int a[]={1,2,3,4,5,6};
+    Array<int> intArr(a,6);
+    cout<<intArr<<endl;
+
+    char str[]="hello";
+    Array<char> charArr(str,5);
+    cout<<charArr<<endl;
+    cin.get();
+}   
+
+//模板的声明和实现都必须写在cpp文件中
+```
