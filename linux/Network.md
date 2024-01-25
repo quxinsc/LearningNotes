@@ -1,6 +1,9 @@
 ## /etc/sysconfig/network-scripts/ifcfg-ens33
+>用于Red Hat系列的发行版，如RHEL（Red Hat Enterprise Linux）和CentOS
 ## /etc/netplan/02-bond-config.yaml
+>这是用于Ubuntu的Netplan配置文件路径。Netplan被引入到Ubuntu 17.10及更新版本中
 ## /etc/network/interfaces
+>这是用于Debian系列的发行版，如Debian和早期版本的Ubuntu
 >手动修改了interfaces 文件，那NetworkManager就自动停止对系统网络的管理，系统改使用interfaces 文件内的参数进行网络配
 ```js
 # interfaces(5) file used by ifup(8) and ifdown(8)
