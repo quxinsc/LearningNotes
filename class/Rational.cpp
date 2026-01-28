@@ -1,12 +1,3 @@
-/*
- * @Author: quxinsc 2224721143quxin@gmail.com
- * @Date: 2022-10-21 18:07:34
- * @LastEditors: quxinsc 2224721143quxin@gmail.com
- * @LastEditTime: 2022-10-21 18:09:48
- * @FilePath: \Code\class\Rational.cpp
- * @Description: 有理数类
- * Copyright (c) 2022 by quxinsc 2224721143quxin@gmail.com, All Rights Reserved. 
- */
 #include<iostream>
 using namespace std;
 class Rational
